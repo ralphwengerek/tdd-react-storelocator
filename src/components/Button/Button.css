@@ -1,0 +1,8 @@
+.btn {
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+}
+.active {
+  color: green;
+}
