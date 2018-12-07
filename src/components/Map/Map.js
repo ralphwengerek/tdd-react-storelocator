@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import mapChooser from "../../Lib/mapChooser";
+import mapChooser from "../../lib/mapChooser";
 import "./Map.scss";
 
 const defaultImage = "/images/default.png";
