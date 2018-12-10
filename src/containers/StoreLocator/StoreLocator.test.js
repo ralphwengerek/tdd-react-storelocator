@@ -1,12 +1,11 @@
 import StoreLocator from "./StoreLocator";
 import React from "react";
 import { shallow } from "enzyme";
-import data from "../../data/shops";
+import axios from "../../../__mocks__/axios";
 
 describe("StoreLocator", function() {
   // Smoke Test
   let mount;
-  let buttonCount = data.length;
 
   beforeEach(() => {
     mount = shallow(<StoreLocator />);
@@ -17,13 +16,17 @@ describe("StoreLocator", function() {
     expect(headers.length).toEqual(1);
   });
 
-  it(`renders ${buttonCount} buttons`, function() {
-    let buttons = mount.find("Button");
-    expect(buttons.length).toEqual(buttonCount);
-  });
-
   it("renders a map", function() {
     let map = mount.find("Map");
     expect(map.length).toEqual(1);
+  });
+
+  it("calls axios.get in componentdidmount", () => {
+    return mount
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        expect(axios.get).toHaveBeenCalled();
+      });
   });
 });

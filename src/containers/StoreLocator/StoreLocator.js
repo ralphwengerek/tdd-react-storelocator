@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { Header, Button, Map } from "../../components";
 import "./StoreLocator.scss";
-
-import shops from "../../data/shops";
+import axios from "axios";
 
 export default class StoreLocator extends Component {
   constructor(props) {
     super(props);
 
-    this.shops = shops;
-
     this.state = {
-      selectedShop: undefined
+      selectedShop: undefined,
+      shops: []
     };
   }
 
@@ -19,15 +17,24 @@ export default class StoreLocator extends Component {
     this.setState({ selectedShop: shop });
   };
 
+  async componentDidMount() {
+    axios.get("/data/shops.json").then(response => {
+      this.setState({ shops: response.data });
+    });
+  }
+
   render() {
-    const storeButtons = this.shops.map((shop, index) => (
+    const { selectedShop, shops } = this.state;
+
+    const storeButtons = shops.map((shop, index) => (
       <Button
         key={index}
         handleClick={() => this.buttonClicked(shop)}
         location={shop.location}
+        active={selectedShop === shop}
       />
     ));
-    const { selectedShop } = this.state;
+
     return (
       <React.Fragment>
         <Header title="Store Locator" />

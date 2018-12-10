@@ -2,7 +2,9 @@
   margin: 10px;
   padding: 10px;
   width: 200px;
-  .active {
-    color: green;
+  &.active {
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
   }
 }

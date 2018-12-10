@@ -21,6 +21,18 @@ describe("Button", () => {
     mountedButtonWithCallback.find("button").simulate("click");
     expect(mockCallback.mock.calls.length).toEqual(1);
   });
+
+  it("adds and active class when passed active=true", function() {
+    const mountedButton = shallow(<Button active />);
+    const activeButton = mountedButton.find(".active");
+    expect(activeButton.length).toEqual(1);
+  });
+
+  it("Default button has not .active class", function() {
+    const mountedButton = shallow(<Button />);
+    const activeButton = mountedButton.find(".active");
+    expect(activeButton.length).toEqual(0);
+  });
 });
 
 describe("when a location is passed to it", () => {
