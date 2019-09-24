@@ -17,7 +17,7 @@ export default class StoreLocator extends Component {
     this.setState({ selectedShop: shop });
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     axios.get("/data/shops.json").then(response => {
       this.setState({ shops: response.data });
     });
