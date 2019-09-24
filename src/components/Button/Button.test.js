@@ -3,14 +3,9 @@ import { shallow } from "enzyme";
 import Button from "./Button";
 
 describe("Button", () => {
-  let mount;
-
-  beforeEach(function() {
-    mount = shallow(<Button />);
-  });
 
   it("renders without crashing", () => {
-    let button = shallow(<Button />);
+    shallow(<Button />);
   });
 
   it("calls a function passed to it when clicked", function() {
